@@ -51,8 +51,9 @@
 interface Program { title: string, icon: string }
 
 import {ref} from 'vue'
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
     methods: {
         setProgram: (program: Program)=>{
             this.program = program 
@@ -97,5 +98,5 @@ export default {
         }
     },
     name: 'Programs'
-}
+})
 </script>
