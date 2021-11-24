@@ -6,21 +6,12 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 
-/* eslint-env node */
-/* eslint-disable @typescript-eslint/no-var-requires */
 const { configure } = require('quasar/wrappers');
 
 module.exports = configure(function (ctx) {
   return {
     // https://quasar.dev/quasar-cli/supporting-ts
-    supportTS: {
-      tsCheckerConfig: {
-        eslint: {
-          enabled: true,
-          files: './src/**/*.{ts,tsx,js,jsx,vue}',
-        },
-      }
-    },
+    supportTS: false,
 
     // https://quasar.dev/quasar-cli/prefetch-feature
     // preFetch: true,
@@ -40,7 +31,7 @@ module.exports = configure(function (ctx) {
     extras: [
       // 'ionicons-v4',
       // 'mdi-v5',
-       'fontawesome-v5',
+      'fontawesome-v5',
       // 'eva-icons',
       // 'themify',
       // 'line-awesome',
@@ -142,9 +133,9 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: 'Test Filmstadt Arendsee - Signup',
-        short_name: 'Test Filmstadt Arendsee - Signup',
-        description: 'Signup for courses from the FSA',
+        name: `Quasar App`,
+        short_name: `Quasar App`,
+        description: `A Quasar Framework app`,
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
@@ -213,7 +204,7 @@ module.exports = configure(function (ctx) {
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpack (/* chain */) {
+      chainWebpackMain (/* chain */) {
         // do something with the Electron main process Webpack cfg
         // extendWebpackMain also available besides this chainWebpackMain
       },

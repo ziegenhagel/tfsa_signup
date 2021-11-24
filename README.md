@@ -1,6 +1,6 @@
-# Test Filmstadt Arendsee - Signup (tfsa_signup)
+# Quasar App (tfsa_signup)
 
-Signup for courses from the FSA
+A Quasar Framework app
 
 ## Install the dependencies
 ```bash
@@ -12,10 +12,6 @@ yarn
 quasar dev
 ```
 
-### Lint the files
-```bash
-yarn run lint
-```
 
 ### Build the app for production
 ```bash

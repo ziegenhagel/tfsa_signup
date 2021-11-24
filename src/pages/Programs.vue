@@ -47,22 +47,21 @@
 </q-page>
 </template>
 
-<script lang="ts">
-interface Program { title: string, icon: string }
+<script>
 
 import {ref} from 'vue'
 
 export default {
     methods: {
-        setProgram: (program: Program)=>{
-            this.program = program 
+        setProgram: (program )=>{
+                        this.program = program 
             this.step++
         }
     },
     data: () => {
         return {
             step: ref(1),
-            program: null as Program,
+            program: null,
             groups: [{
                     title: "Sommercamp",
                     programs: [{
@@ -99,3 +98,4 @@ export default {
     name: 'Programs'
 }
 </script>
+
