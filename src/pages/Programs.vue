@@ -42,29 +42,55 @@
         <q-step :name="3" title="Termin" :done="step > 3">
             <h2><i :class="program.icon"></i> Termine</h2>
             <p>in {{program.title}} / {{course.title}}</p>
-            <q-banner inline-actions rounded class="bg-orange text-white">
+
+            <q-list v-if="course.events && course.events.length > 0">
+                <q-item @click="setEvent(event)" v-for="(event,index) in course.events" :key="index" clickable v-ripple>
+                    <q-item-section top avatar>
+                        <q-avatar icon="event" color="blue-grey-2"></q-avatar>
+                    </q-item-section>
+
+                    <q-item-section>
+                        <q-item-label>{{event.title}}</q-item-label>
+                        <q-item-label caption>{{event.start}} - {{event.end}}</q-item-label>
+                        <q-badge :color="event.status">Plätze verfügbar</q-badge>
+                    </q-item-section>
+
+                    <q-item-section side center>
+                        <i class="fa fa-chevron-right"></i>
+                    </q-item-section>
+                </q-item>
+            </q-list>
+
+            <q-banner inline-actions rounded class="bg-orange text-white" v-else>
                 Aktuell keine Termine in {{program.title}} / {{course.title}} verfügbar.
             </q-banner>
         </q-step>
 
         <q-step :name="4" title="Daten" :done="step > 4">
-            <h2><i class="fa fa-user"></i> Daten</h2>
-            <p>in {{program.title}} / {{course.title}} / Event</p>
+            <h2><i class="fa fa-user"></i> Daten eingeben</h2>
+            <p>in {{program.title}} / {{course.title}} / {{event.title}} </p>
             <q-form>
 
-                <q-input square filled v-model="text">
+                <q-input outlined label="Geburtstag">
                     <template v-slot:prepend>
                         <q-icon name="event" />
                     </template>
                 </q-input>
+                <q-input outlined label="Noch etwas"/>
 
             </q-form>
+        </q-step>
+
+        <q-step :name="5" title="Fertig" :done="step > 5">
+            <h1>Vielen Dank! </h1>
+            <p>Du hast eine Bestätigungsmail an deine Email Adresse gesendet bekommen.</p>
+            <p>Dort findset Du Details zur weiteren Vorgehensweise.</p>
         </q-step>
 
         <template v-slot:navigation>
             <q-stepper-navigation v-if="step > 1">
                 <q-btn v-if="step > 1" color="white" text-color="black" @click="$refs.stepper.previous()" label="Zurück" push />
-                <q-btn v-if="step > 2" @click="$refs.stepper.next()" color="primary" label="Weiter" push />
+                <q-btn v-if="step > 3" @click="$refs.stepper.next()" color="primary" label="Anmeldung abschliessen" push />
             </q-stepper-navigation>
         </template>
 
@@ -91,6 +117,10 @@ export default defineComponent({
         setCourse: function (course: Course) {
             this.course = course
             this.step++
+        },
+        setEvent: function (event: Event) {
+            this.event = event
+            this.step++
         }
     },
     data: () => {
@@ -111,8 +141,8 @@ export default defineComponent({
                                     events: [
                                         {
                                             title: "Woche 1",
-                                            start: "2021-12-01",
-                                            end: "2021-12-08",
+                                            start: "01.12.2021",
+                                            end: "08.12.2021",
                                             status : "green"
                                         }
                                     ] as Event[]

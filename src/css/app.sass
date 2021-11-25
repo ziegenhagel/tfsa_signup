@@ -23,6 +23,17 @@ body
         background: $background
         flex: 1
 
+    .q-form
+        background: $background
+        padding: 2em
+        margin: 0 -2em
+
+        .q-field 
+            margin-bottom: 1em
+
+            &:last-of-type
+                margin-bottom: 0
+
 .card-wrapper 
 
     h3
@@ -67,6 +78,11 @@ body
 
     .q-item
         border-top: 1px solid $separator
+
+        .q-badge
+            width: min-content
+            margin-top: .5em
+
 
 .q-stepper__nav
     display: flex
