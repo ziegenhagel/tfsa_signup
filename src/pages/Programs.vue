@@ -19,8 +19,7 @@
             <h2><i :class="program.icon"></i> Kurse</h2>
             <p>in {{program.title}}</p>
             <q-list v-if="program.courses && program.courses.length > 0">
-                <q-item  @click="setCourse(course)" v-for="course in program.courses" 
-:key="course.title" clickable v-ripple >
+                <q-item @click="setCourse(course)" v-for="course in program.courses" :key="course.title" clickable v-ripple>
                     <q-item-section top avatar>
                         <q-avatar :icon="course.icon" color="blue-grey-2"></q-avatar>
                     </q-item-section>
@@ -33,7 +32,7 @@
                     <q-item-section side center>
                         <i class="fa fa-chevron-right"></i>
                     </q-item-section>
-            </q-item>
+                </q-item>
             </q-list>
             <q-banner inline-actions rounded class="bg-orange text-white" v-else>
                 Aktuell keine Kurse in {{program.title}} verfügbar.
