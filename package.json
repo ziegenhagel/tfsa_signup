@@ -6,7 +6,7 @@
   "author": "domi <dominik.ziegenhagel@gmail.com>",
   "private": true,
   "scripts": {
-      "build": "quasar build",
+      "build": "quasar build && mkdir build/ && mv dist/spa/ build/",
     "lint": "eslint --ext .js,.ts,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
