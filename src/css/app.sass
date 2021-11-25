@@ -1,16 +1,31 @@
 
+$background: white
+$separator: #0003
+$textcolor: #333
+
 body 
     background: lighten($primary,44)
 
-.container
-    padding: 0em 2em 
+.q-stepper
+    background: none
+    box-shadow: none
+
+    h2
+        font-size: 2.5em
+        font-weight: bolder
+        margin: 0
+
+    .q-stepper__tab
+        background: $background
 
 .card-wrapper 
 
     h3
         font-size: 1.5em
-        font-weight: bolder
-        margin-bottom: 0
+        margin-bottom: 8px
+        margin-top: 28px
+        padding-bottom: 0px
+        line-height: 1.4em
 
     .row.no-wrap
         width: 100%
@@ -18,10 +33,15 @@ body
         padding: 1em
         margin: -1em
 
-        .q-card 
-            margin-right: 1em
-            border-radius: 2em
-            box-shadow: 0 5px 5px #0003
+        .q-btn 
+            margin-right: .8em
+            transition: .2s 
+            min-width: 10em
+            background: $background
+
+            span
+                display: block
+                margin-top: 2px
 
             i.fa
                 font-size: 3em
@@ -35,3 +55,13 @@ body
                 font-size: 1em
                 line-height: 1.5em
                 text-align: center
+
+
+.q-list 
+    margin: 0 -22px
+    background: $background
+
+    .q-item
+        border-top: 1px solid $separator
+        margin: 0
+        padding: 1em 22px
