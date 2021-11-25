@@ -17,6 +17,7 @@ body
 
     .q-stepper__tab
         background: $background
+        flex: 1
 
 .card-wrapper 
 
@@ -58,10 +59,14 @@ body
 
 
 .q-list 
-    margin: 0 -22px
     background: $background
 
     .q-item
         border-top: 1px solid $separator
-        margin: 0
-        padding: 1em 22px
+
+.q-stepper__nav
+    display: flex
+    justify-content: space-between
+
+.q-btn + .q-btn 
+    margin-left: 1em

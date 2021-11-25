@@ -1,8 +1,8 @@
 <template>
 <q-page>
-    <q-stepper v-model="step" ref="stepper" color="primary" animated>
+    <q-stepper alternative-labels v-model="step" ref="stepper" color="primary" animated>
 
-        <q-step :name="1" title="Programm wählen" :done="step > 1">
+        <q-step :name="1" title="Programm" :done="step > 1">
             <h2>Programm wählen</h2>
             <div class="card-wrapper" v-for="group in groups" :key="group.title">
                 <h3>{{group.title}}</h3>
@@ -15,7 +15,7 @@
             </div>
         </q-step>
 
-        <q-step :name="2" title="Kurse" :done="step > 2">
+        <q-step :name="2" title="Kurs" :done="step > 2">
             <h2><i :class="program.icon"></i> Kurse</h2>
             <p>in {{program.title}}</p>
             <q-list v-if="program.courses && program.courses.length > 0">
@@ -39,7 +39,7 @@
             </q-banner>
         </q-step>
 
-        <q-step :name="3" title="Termine" :done="step > 3">
+        <q-step :name="3" title="Termin" :done="step > 3">
             <h2><i :class="program.icon"></i> Termine</h2>
             <p>in {{program.title}} / {{course.title}}</p>
             <q-banner inline-actions rounded class="bg-orange text-white">
@@ -47,9 +47,23 @@
             </q-banner>
         </q-step>
 
+        <q-step :name="4" title="Daten" :done="step > 4">
+            <h2><i class="fa fa-user"></i> Daten</h2>
+            <p>in {{program.title}} / {{course.title}} / Event</p>
+            <q-form>
+
+                <q-input square filled v-model="text">
+                    <template v-slot:prepend>
+                        <q-icon name="event" />
+                    </template>
+                </q-input>
+
+            </q-form>
+        </q-step>
+
         <template v-slot:navigation>
             <q-stepper-navigation v-if="step > 1">
-                <q-btn v-if="step > 1" color="white" text-color="black" @click="$refs.stepper.previous()" label="Zurück" v-ripple />
+                <q-btn v-if="step > 1" color="white" text-color="black" @click="$refs.stepper.previous()" label="Zurück" push />
                 <q-btn v-if="step > 2" @click="$refs.stepper.next()" color="primary" label="Weiter" push />
             </q-stepper-navigation>
         </template>
