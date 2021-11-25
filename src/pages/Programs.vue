@@ -76,7 +76,7 @@
                         <q-icon name="event" />
                     </template>
                 </q-input>
-                <q-input outlined label="Noch etwas"/>
+                <q-input outlined label="Noch etwas" />
 
             </q-form>
         </q-step>
@@ -85,9 +85,13 @@
             <h1>Vielen Dank! </h1>
             <p>Du hast eine Bestätigungsmail an deine Email Adresse gesendet bekommen.</p>
             <p>Dort findset Du Details zur weiteren Vorgehensweise.</p>
+            <q-btn-group>
+                <q-btn color="white" text-color="black" push @click="reset()">Weitere Anmeldung</q-btn>
+                <q-btn color="primary" push>Anmeldeseite schliessen</q-btn>
+            </q-btn-group>
         </q-step>
 
-        <template v-slot:navigation>
+        <template v-slot:navigation v-if="step < 5">
             <q-stepper-navigation v-if="step > 1">
                 <q-btn v-if="step > 1" color="white" text-color="black" @click="$refs.stepper.previous()" label="Zurück" push />
                 <q-btn v-if="step > 3" @click="$refs.stepper.next()" color="primary" label="Anmeldung abschliessen" push />
@@ -99,9 +103,15 @@
 </template>
 
 <script lang="ts">
-interface Program { title: string, icon: string, courses: Course[] }
-interface Course { title: string, icon: string, description?: string, events: Event[]  }
-interface Event { title: string, start: string, end: string, status: "red" | "green" | "orange" }
+interface Program {
+    title: string, icon: string, courses: Course[]
+}
+interface Course {
+    title: string, icon: string, description ? : string, events: Event[]
+}
+interface Event {
+    title: string, start: string, end: string, status: "red" | "green" | "orange"
+}
 
 import {
     ref,
@@ -121,7 +131,8 @@ export default defineComponent({
         setEvent: function (event: Event) {
             this.event = event
             this.step++
-        }
+        },
+        reset: function() {this.step = 1}
     },
     data: () => {
         return {
@@ -138,14 +149,12 @@ export default defineComponent({
                                     title: "Kamera Workshop",
                                     icon: "fa fa-camera",
                                     description: "Lerne mit der Kamera umzugehen",
-                                    events: [
-                                        {
-                                            title: "Woche 1",
-                                            start: "01.12.2021",
-                                            end: "08.12.2021",
-                                            status : "green"
-                                        }
-                                    ] as Event[]
+                                    events: [{
+                                        title: "Woche 1",
+                                        start: "01.12.2021",
+                                        end: "08.12.2021",
+                                        status: "green"
+                                    }] as Event[]
                                 },
                                 {
                                     title: "Schauspiel Workshop",
