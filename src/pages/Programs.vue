@@ -73,12 +73,9 @@
 </template>
 
 <script lang="ts">
-interface Program {
-    title: string, icon: string
-}
-interface Course {
-    title: string, icon: string
-}
+interface Program { title: string, icon: string, courses: Course[] }
+interface Course { title: string, icon: string, description?: string, events: Event[]  }
+interface Event { title: string, start: string, end: string, status: "red" | "green" | "orange" }
 
 import {
     ref,
@@ -101,6 +98,7 @@ export default defineComponent({
             step: ref(1),
             program: null as Program,
             course: null as Course,
+            event: null as Event,
             groups: [{
                     title: "Jugendfilmcamp ",
                     programs: [{
@@ -109,14 +107,22 @@ export default defineComponent({
                             courses: [{
                                     title: "Kamera Workshop",
                                     icon: "fa fa-camera",
-                                    description: "Lerne mit der Kamera umzugehen"
+                                    description: "Lerne mit der Kamera umzugehen",
+                                    events: [
+                                        {
+                                            title: "Woche 1",
+                                            start: "2021-12-01",
+                                            end: "2021-12-08",
+                                            status : "green"
+                                        }
+                                    ] as Event[]
                                 },
                                 {
                                     title: "Schauspiel Workshop",
                                     icon: "fa fa-theater-masks",
                                     description: "Lerne mit der Kamera umzugehen"
                                 }
-                            ]
+                            ] as Course[]
                         },
                         {
                             title: "STARTER",
@@ -133,7 +139,7 @@ export default defineComponent({
                                 }
                             ]
                         }
-                    ]
+                    ] as Program[]
                 },
                 {
                     title: "Bildung",
